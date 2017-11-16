@@ -1,5 +1,5 @@
 <?php
-$base = new PDO('mysql:host=localhost; dbname=bursserver_bd', 'root', '');
+$base = new PDO('mysql:host=45.32.219.162; dbname=bursserver_bd', 'root', 'Cell79=68');
 $retour = $base->query("SELECT * FROM tblLED;");
 $x =0;
 while ($data = $retour->fetch()){
