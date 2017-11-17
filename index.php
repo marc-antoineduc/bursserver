@@ -1,8 +1,7 @@
 <?php
-echo test;
 
 try{
-	$base = new PDO('mysql:host=localhost; dbname=bursserver_bd', 'root', 'Cell79=68');
+	$base = new PDO('mysql:host=localhost; dbname=bursserver_bd', 'root', '');
 	$retour = $base->query("SELECT * FROM tblLED;");
 	$x =0;
 	while ($data = $retour->fetch()){
@@ -11,11 +10,11 @@ try{
 	    $Emplacements[$x] = $data['Emplacement'];
 	    $x++;
 	}
-	AfficherLED($Ids,$Emplacements,$Etats); 
+	AfficherLED($Ids,$Emplacements,$Etats,$x); 
 } catch(PDOException $e){
 echo $e->getMessage();
 }
-function AfficherLED($Ids,$Emplacements,$Etats){
+function AfficherLED($Ids,$Emplacements,$Etats,$x){
 	for($y=0;$y<$x;$y++){
 	    $message = ('L\'Id est :'.$Ids[$y].' -L\'emplacement est  :'.$Emplacements[$y].'. -La LED est présentement '.EtatLed($Etats[$y]).'.');
 	    echo $message;
@@ -29,3 +28,8 @@ function EtatLed($etat){
     return $retour;
 }
 ?>
+<form action="insert.php" method="get">
+    <p>Emplacement de la LED : <input type=text name="Emplacement"></p>
+    <p><input type=submit value="Enregistrer"></p>
+</form>
+
